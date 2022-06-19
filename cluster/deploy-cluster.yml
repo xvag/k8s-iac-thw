@@ -1,0 +1,76 @@
+###
+### Run on localhost from which you control the machines in GCP.
+### Must have installed and configured the gcloud cli, kubectl and cfssl
+###
+
+- name: Update and prepare the nodes
+  hosts: cluster
+  become: yes
+  tags:
+    - r01
+  vars_files:
+    - vars.yml
+  roles:
+    - 01-vm-prep
+
+- name: Generate Certifications and Configs
+  hosts: localhost
+  tags:
+    - r02
+  vars_files:
+    - vars.yml
+  roles:
+    - 02-gen-cert-conf
+
+- name: Distribute Certifications and Configs
+  hosts: cluster
+  remote_user: kube
+  tags:
+    - r03
+  roles:
+    - 03-dist-cert-conf
+
+- name: Bootstrapping the etcd Cluster
+  hosts: controllers
+  remote_user: kube
+  tags:
+    - r04
+  vars_files:
+    - vars.yml
+  roles:
+    - 04-boot-etcd
+
+- name: Bootstrapping the Kubernetes Control Plane
+  hosts: controllers
+  remote_user: kube
+  tags:
+    - r05
+  vars_files:
+    - vars.yml
+  roles:
+    - 05-boot-control
+
+- name: Bootstrapping the Kubernetes Worker Nodes
+  hosts: workers
+  remote_user: kube
+  tags:
+    - r06
+  vars_files:
+    - vars.yml
+  roles:
+    - 06-boot-worker
+
+- name: Configure remote access
+  hosts: localhost
+  tags:
+    - r07
+  roles:
+    - 07-remote
+
+- name: Post-Deploy actions and configurations
+  hosts: cluster
+  become: yes
+  tags:
+    - r08
+  roles:
+    - 08-post-deploy

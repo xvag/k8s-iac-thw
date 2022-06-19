@@ -1,0 +1,15 @@
+- name: Generate service-account-csr.json file
+  template:
+    src: service-account-csr.json.j2
+    dest: /tmp/k8s/service-account-csr.json
+
+- name: Generate service account key pair
+  shell: |
+    cfssl gencert \
+      -ca=ca.pem \
+      -ca-key=ca-key.pem \
+      -config=ca-config.json \
+      -profile=kubernetes \
+      service-account-csr.json | cfssljson -bare service-account
+  args:
+    chdir: /tmp/k8s/

@@ -1,0 +1,11 @@
+
+- name: Move the kube-controller-manager kubeconfig to /var/lib/kubernetes/
+  become: yes
+  shell: |
+    mv kube-controller-manager.kubeconfig /var/lib/kubernetes/
+
+- name: Create the kube-controller-manager.service systemd unit file
+  become: yes
+  template:
+    src: kube-controller-manager.service.j2
+    dest: /etc/systemd/system/kube-controller-manager.service

@@ -1,0 +1,10 @@
+- name: Update system packages
+  package:
+   name: "*"
+   state: latest
+
+- name: Install some basic packages
+  package:
+   name: "{{ item }}"
+  loop:
+   - "{{ basic_packages }}"

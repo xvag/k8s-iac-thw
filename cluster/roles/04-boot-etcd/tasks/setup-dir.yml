@@ -1,0 +1,24 @@
+
+- name: Create /var/lib/etcd directory
+  become: yes
+  file:
+    path: /var/lib/etcd
+    state: directory
+    mode: '0700'
+
+- name: Create /etc/etcd directory
+  become: yes
+  file:
+    path: /etc/etcd
+    state: directory
+
+- name: Copy cert and keys to /etc/etcd
+  become: yes
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    remote_src: yes
+  loop:
+    - {src: '/home/kube/ca.pem', dest: '/etc/etcd/ca.pem'}
+    - {src: '/home/kube/kubernetes-key.pem', dest: '/etc/etcd/kubernetes-key.pem'}
+    - {src: '/home/kube/kubernetes.pem', dest: '/etc/etcd/kubernetes.pem'}

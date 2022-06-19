@@ -1,0 +1,25 @@
+
+- name: Get INTERNAL IP
+  shell: |
+    curl -s -H "Metadata-Flavor: Google" \
+      http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip
+  register: internal_ip
+
+- name: Get HOSTNAME
+  shell: |
+    hostname -s
+  register: hostname
+
+- name: Create the etcd.service systemd unit file
+  become: yes
+  template:
+    src: etcd.service.j2
+    dest: /etc/systemd/system/etcd.service
+
+- name: Start and Enable etcd service
+  become: yes
+  systemd:
+    name: etcd
+    state: started
+    enabled: yes
+    daemon_reload: yes

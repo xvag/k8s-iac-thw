@@ -1,0 +1,15 @@
+- name: Generate kube-scheduler-csr.json file
+  template:
+    src: kube-scheduler-csr.json.j2
+    dest: /tmp/k8s/kube-scheduler-csr.json
+
+- name: Generate scheduler key pair
+  shell: |
+    cfssl gencert \
+      -ca=ca.pem \
+      -ca-key=ca-key.pem \
+      -config=ca-config.json \
+      -profile=kubernetes \
+      kube-scheduler-csr.json | cfssljson -bare kube-scheduler
+  args:
+    chdir: /tmp/k8s/

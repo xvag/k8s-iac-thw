@@ -1,0 +1,48 @@
+- name: Generate worker-csr.json file
+  template:
+    src: worker-csr.json.j2
+    dest: /tmp/k8s/{{ item }}-csr.json
+  with_items:
+    "{{ groups['workers'] }}"
+
+- name: Get EXTERNAL IPs
+  shell: |
+    gcloud compute instances describe {{ item }} \
+      --format 'value(networkInterfaces[0].accessConfigs[0].natIP)'
+  with_items:
+    "{{ groups['workers'] }}"
+  register: external_ip
+
+- name: Get INTERNAL IPs
+  shell: |
+    gcloud compute instances describe {{ item }} \
+      --format 'value(networkInterfaces[0].networkIP)'
+  with_items:
+    "{{ groups['workers'] }}"
+  register: internal_ip
+
+- name: Print EXTERNAL IP
+  debug:
+    msg: "{{ external_ip.results[item.0].stdout }}"
+  with_indexed_items:
+    "{{ groups['workers'] }}"
+
+- name: Print INTERNAL IP
+  debug:
+    msg: "{{ internal_ip.results[item.0].stdout }}"
+  with_indexed_items:
+    "{{ groups['workers'] }}"
+
+- name: Generate workers key pairs
+  shell: |
+    cfssl gencert \
+      -ca=ca.pem \
+      -ca-key=ca-key.pem \
+      -config=ca-config.json \
+      -hostname={{ item.1 }},{{ external_ip.results[item.0].stdout }},{{ internal_ip.results[item.0].stdout }} \
+      -profile=kubernetes \
+      {{ item.1 }}-csr.json | cfssljson -bare {{ item.1 }}
+  args:
+    chdir: /tmp/k8s/
+  with_indexed_items:
+    "{{ groups['workers'] }}"

@@ -1,0 +1,15 @@
+- name: Generate ca-config.json file
+  template:
+    src: ca-config.json.j2
+    dest: /tmp/k8s/ca-config.json
+
+- name: Generate ca-csr.json file
+  template:
+    src: ca-csr.json.j2
+    dest: /tmp/k8s/ca-csr.json
+
+- name: Generate CA cert and key
+  shell: |
+    cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+  args:
+    chdir: /tmp/k8s/

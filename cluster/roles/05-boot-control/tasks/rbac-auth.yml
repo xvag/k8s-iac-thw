@@ -1,0 +1,22 @@
+
+- name: Create ClusterRole
+  template:
+   src: kube-apiserver-to-kubelet-role.yaml.j2
+   dest: kube-apiserver-to-kubelet-role.yaml
+  run_once: true
+
+- name: Apply ClusterRole
+  shell: |
+    kubectl apply --kubeconfig admin.kubeconfig -f kube-apiserver-to-kubelet-role.yaml
+  run_once: true
+
+- name: Create ClusterRoleBinding
+  template:
+   src: kube-apiserver-to-kubelet-bind.yaml.j2
+   dest: kube-apiserver-to-kubelet-bind.yaml
+  run_once: true
+
+- name: Apply ClusterRoleBinding
+  shell: |
+    kubectl apply --kubeconfig admin.kubeconfig -f kube-apiserver-to-kubelet-bind.yaml
+  run_once: true

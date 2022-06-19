@@ -1,0 +1,15 @@
+- name: Generate kube-controller-manager-csr.json file
+  template:
+    src: kube-controller-manager-csr.json.j2
+    dest: /tmp/k8s/kube-controller-manager-csr.json
+
+- name: Generate controller key pair
+  shell: |
+    cfssl gencert \
+      -ca=ca.pem \
+      -ca-key=ca-key.pem \
+      -config=ca-config.json \
+      -profile=kubernetes \
+      kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
+  args:
+    chdir: /tmp/k8s/

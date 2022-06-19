@@ -1,0 +1,9 @@
+- name: Deploy coredns
+  become: false
+  kubernetes.core.k8s:
+    state: present
+    src: coredns-1.8.3.yaml
+  delegate_to: localhost
+  run_once: true
+  tags:
+    - dns

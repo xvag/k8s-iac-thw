@@ -1,0 +1,24 @@
+basic_packages:
+  - vim
+  - bash-completion
+  - wget
+  - curl
+  - apt-transport-https
+  - ca-certificates
+  - software-properties-common
+  - net-tools
+
+# arguments for generating kubernetes api cert/key
+k8s_hostnames: "kubernetes,kubernetes.default,kubernetes.default.svc,kubernetes.default.svc.cluster,kubernetes.svc.cluster.local"
+api_server_ip: "10.32.0.1"
+controller_ips: "10.240.0.10,10.240.0.11"
+
+# initial etcd cluster nodes definition, needed in etcd.service unit file
+initial_cluster: "controller-0=https://10.240.0.10:2380,controller-1=https://10.240.0.11:2380"
+
+# etcd servers definition, needed in kube-apiserver.service unit file
+etcd_servers: "https://10.240.0.10:2379,https://10.240.0.11:2379"
+
+service_cluster_ip_range: "10.32.0.0/24"
+cluster_dns: "10.32.0.10"
+cluster_cidr: "10.200.0.0/16"

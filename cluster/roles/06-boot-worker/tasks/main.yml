@@ -1,0 +1,18 @@
+
+- name: Install dependencies and prepare directories and binaries
+  import_tasks: pre-setup.yml
+
+- name: Configure CNI Networking
+  import_tasks: cni-net.yml
+
+- name: Configure containerd
+  import_tasks: containerd.yml
+
+- name: Configure the Kubelet
+  import_tasks: kubelet.yml
+
+- name: Configure the Kubernetes Proxy
+  import_tasks: proxy.yml
+
+- name: Start and Enable the Services
+  import_tasks: start-services.yml

@@ -1,0 +1,16 @@
+- name: Generate kubernetes-csr.json file
+  template:
+    src: kubernetes-csr.json.j2
+    dest: /tmp/k8s/kubernetes-csr.json
+
+- name: Generate API key pair
+  shell: |
+    cfssl gencert \
+      -ca=ca.pem \
+      -ca-key=ca-key.pem \
+      -config=ca-config.json \
+      -hostname=127.0.0.1,{{ api_server_ip }},{{ controller_ips }},{{ public_ip.stdout }},{{ k8s_hostnames }} \
+      -profile=kubernetes \
+      kubernetes-csr.json | cfssljson -bare kubernetes
+  args:
+    chdir: /tmp/k8s/

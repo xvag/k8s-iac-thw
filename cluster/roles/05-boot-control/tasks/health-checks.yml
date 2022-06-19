@@ -1,0 +1,26 @@
+
+- name: Install nginx
+  become: yes
+  package:
+   name: nginx
+   state: latest
+
+- name: Setup kubernetes.default.svc.cluster.local
+  become: yes
+  template:
+   src: kubernetes.default.svc.cluster.local.j2
+   dest: /etc/nginx/sites-available/kubernetes.default.svc.cluster.local
+
+- name: Enable site
+  become: yes
+  file:
+   src: /etc/nginx/sites-available/kubernetes.default.svc.cluster.local
+   dest: /etc/nginx/sites-enabled/kubernetes.default.svc.cluster.local
+   state: link
+
+- name: Restart and Enable nginx
+  become: yes
+  systemd:
+    name: nginx
+    state: reloaded
+    enabled: yes

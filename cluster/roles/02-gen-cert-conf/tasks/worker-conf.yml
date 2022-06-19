@@ -1,0 +1,24 @@
+- name: Generate workers config files
+  shell: |
+    kubectl config set-cluster kubernetes-the-hard-way \
+      --certificate-authority=ca.pem \
+      --embed-certs=true \
+      --server=https://{{ public_ip.stdout }}:6443 \
+      --kubeconfig={{ item }}.kubeconfig
+
+    kubectl config set-credentials system:node:{{ item }} \
+      --client-certificate={{ item }}.pem \
+      --client-key={{ item }}-key.pem \
+      --embed-certs=true \
+      --kubeconfig={{ item }}.kubeconfig
+
+    kubectl config set-context default \
+      --cluster=kubernetes-the-hard-way \
+      --user=system:node:{{ item }} \
+      --kubeconfig={{ item }}.kubeconfig
+
+    kubectl config use-context default --kubeconfig={{ item }}.kubeconfig
+  args:
+    chdir: /tmp/k8s/
+  with_items:
+    "{{ groups['workers'] }}"

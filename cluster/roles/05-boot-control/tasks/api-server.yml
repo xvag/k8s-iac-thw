@@ -1,0 +1,39 @@
+
+- name: Create /var/lib/kubernetes directory
+  become: yes
+  file:
+    path: /var/lib/kubernetes
+    state: directory
+
+- name: Move keys and encryption config to /var/lib/kubernetes
+  become: yes
+  shell: |
+    mv "{{ item }}" /var/lib/kubernetes/
+  with_items:
+    - ca.pem
+    - ca-key.pem
+    - kubernetes-key.pem
+    - kubernetes.pem
+    - service-account-key.pem
+    - service-account.pem
+    - encryption-config.yaml
+
+- name: Get INTERNAL IP
+  shell: |
+    curl -s -H "Metadata-Flavor: Google" \
+      http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip
+  register: internal_ip
+
+- name: Get PUBLIC ADDRESS
+  shell: |
+    gcloud compute addresses describe k8s-ip \
+      --region $(gcloud config get-value compute/region) \
+      --format 'value(address)'
+  register: public_ip
+  delegate_to: localhost
+
+- name: Create the kube-apiserver.service systemd unit file
+  become: yes
+  template:
+    src: kube-apiserver.service.j2
+    dest: /etc/systemd/system/kube-apiserver.service

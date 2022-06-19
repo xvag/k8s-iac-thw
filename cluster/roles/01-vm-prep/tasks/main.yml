@@ -1,0 +1,8 @@
+- name: Update system and Install basic packages
+  import_tasks: update-install.yml
+
+- name: Create a user (kube)
+  import_tasks: kube-user.yml
+
+- name: Load and enalbe necessary kernel modules
+  import_tasks: kernel-modules.yml

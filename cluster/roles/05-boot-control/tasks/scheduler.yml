@@ -1,0 +1,17 @@
+
+- name: Move the kube-scheduler kubeconfig to /var/lib/kubernetes/
+  become: yes
+  shell: |
+    mv kube-scheduler.kubeconfig /var/lib/kubernetes/
+
+- name: Create the kube-scheduler.yaml configuration file
+  become: yes
+  template:
+    src: kube-scheduler.yaml.j2
+    dest: /etc/kubernetes/config/kube-scheduler.yaml
+
+- name: Create the kube-scheduler.service systemd unit file
+  become: yes
+  template:
+    src: kube-scheduler.service.j2
+    dest: /etc/systemd/system/kube-scheduler.service

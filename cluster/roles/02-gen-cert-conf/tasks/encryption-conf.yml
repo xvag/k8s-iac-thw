@@ -1,0 +1,9 @@
+- name: Generate the encryption key
+  shell: |
+    head -c 32 /dev/urandom | base64
+  register: encryption_key
+
+- name: Generate the encryption config file
+  template:
+    src: encryption-config.yaml.j2
+    dest: /tmp/k8s/encryption-config.yaml

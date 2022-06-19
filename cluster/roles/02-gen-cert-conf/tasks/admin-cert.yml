@@ -1,0 +1,15 @@
+- name: Generate admin-csr.json file
+  template:
+    src: admin-csr.json.j2
+    dest: /tmp/k8s/admin-csr.json
+
+- name: Generate admin key pair
+  shell: |
+    cfssl gencert \
+      -ca=ca.pem \
+      -ca-key=ca-key.pem \
+      -config=ca-config.json \
+      -profile=kubernetes \
+      admin-csr.json | cfssljson -bare admin
+  args:
+    chdir: /tmp/k8s/

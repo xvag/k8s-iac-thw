@@ -1,0 +1,11 @@
+
+- name: Download and Extract the official etcd release binaries from the etcd GitHub project
+  shell: |
+   wget -q --show-progress --https-only --timestamping \
+     "https://github.com/etcd-io/etcd/releases/download/v3.4.15/etcd-v3.4.15-linux-amd64.tar.gz"
+   tar -xvf etcd-v3.4.15-linux-amd64.tar.gz
+
+- name: Install the etcd server and the etcdctl command line utility
+  become: yes
+  shell: |
+    mv etcd-v3.4.15-linux-amd64/etcd* /usr/local/bin/

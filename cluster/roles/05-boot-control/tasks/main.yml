@@ -1,0 +1,21 @@
+
+- name: Prepare directories and binaries
+  import_tasks: pre-setup.yml
+
+- name: Configure the Kubernetes API Server
+  import_tasks: api-server.yml
+
+- name: Configure the Kubernetes Controller Manager
+  import_tasks: control-manager.yml
+
+- name: Configure the Kubernetes Scheduler
+  import_tasks: scheduler.yml
+
+- name: Start the Services
+  import_tasks: start-services.yml
+
+- name: Enable HTTP Health Checks
+  import_tasks: health-checks.yml
+
+- name: RBAC for Kubelet Authorization
+  import_tasks: rbac-auth.yml

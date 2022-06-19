@@ -1,0 +1,27 @@
+- name: Retrieve PUBLIC IP
+  shell: |
+    gcloud compute addresses describe k8s-ip \
+      --region $(gcloud config get-value compute/region) \
+      --format 'value(address)'
+  register: public_ip
+
+- name: Print PUBLIC IP
+  debug:
+    msg: "{{ public_ip.stdout }}"
+
+- name: Set and Use cluster/user/context
+  shell: |
+    kubectl config set-cluster kubernetes-the-hard-way \
+      --certificate-authority=/tmp/k8s/ca.pem \
+      --embed-certs=true \
+      --server=https://"{{ public_ip.stdout }}":6443
+
+    kubectl config set-credentials admin \
+      --client-certificate=/tmp/k8s/admin.pem \
+      --client-key=/tmp/k8s/admin-key.pem
+
+    kubectl config set-context kubernetes-the-hard-way \
+      --cluster=kubernetes-the-hard-way \
+      --user=admin
+
+    kubectl config use-context kubernetes-the-hard-way

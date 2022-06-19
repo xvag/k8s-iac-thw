@@ -1,0 +1,28 @@
+- name: Copy the appropriate certificates, private keys and kubeconfig files to each worker instance
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - {src: '/tmp/k8s/ca.pem', dest: '/home/kube/ca.pem'}
+    - {src: "/tmp/k8s/{{ inventory_hostname }}-key.pem", dest: "/home/kube/{{ inventory_hostname }}-key.pem"}
+    - {src: "/tmp/k8s/{{ inventory_hostname }}.pem", dest: "/home/kube/{{ inventory_hostname }}.pem"}
+    - {src: "/tmp/k8s/{{ inventory_hostname }}.kubeconfig", dest: "/home/kube/{{ inventory_hostname }}.kubeconfig"}
+    - {src: '/tmp/k8s/kube-proxy.kubeconfig', dest: '/home/kube/kube-proxy.kubeconfig'}
+  when: inventory_hostname in groups['workers']
+
+- name: Copy the appropriate certificates, private keys and kubeconfig files to each controller instance
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - {src: '/tmp/k8s/ca.pem', dest: '/home/kube/ca.pem'}
+    - {src: '/tmp/k8s/ca-key.pem', dest: '/home/kube/ca-key.pem'}
+    - {src: '/tmp/k8s/kubernetes.pem', dest: '/home/kube/kubernetes.pem'}
+    - {src: '/tmp/k8s/kubernetes-key.pem', dest: '/home/kube/kubernetes-key.pem'}
+    - {src: '/tmp/k8s/service-account.pem', dest: '/home/kube/service-account.pem'}
+    - {src: '/tmp/k8s/service-account-key.pem', dest: '/home/kube/service-account-key.pem'}
+    - {src: '/tmp/k8s/admin.kubeconfig', dest: '/home/kube/admin.kubeconfig'}
+    - {src: '/tmp/k8s/kube-controller-manager.kubeconfig', dest: '/home/kube/kube-controller-manager.kubeconfig'}
+    - {src: '/tmp/k8s/kube-scheduler.kubeconfig', dest: '/home/kube/kube-scheduler.kubeconfig'}
+    - {src: '/tmp/k8s/encryption-config.yaml', dest: '/home/kube/encryption-config.yaml'}
+  when: inventory_hostname in groups['controllers']
