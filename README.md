@@ -1,5 +1,5 @@
-# Deploy k8s "the hard way"
+# Kubernetes The Hard Way as Code
 
-Deploy infrastructure and kubernetes cluster "as code", with Terraform and Ansible.
+Deploy Kubernetes The Hard Way as Code as Code, with Terraform and Ansible.
 
 Based on [Kubernetes The Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way)
