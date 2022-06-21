@@ -11,13 +11,16 @@ variable "gcp_creds" {
 }
 
 variable "ssh_user" {
-  type      = string
-  sensitive = true
+  type        = string
+  sensitive   = true
+  description = "SSH username for connecting to VMs"
 }
 
 variable "ssh_key" {
-  type      = string
-  sensitive = true
+  type        = string
+  sensitive   = true
+  description = "SSH .pub key for connecting to VMs"
+
 }
 
 variable "vpc" {
