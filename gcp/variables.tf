@@ -20,85 +20,32 @@ variable "ssh_key" {
   sensitive = true
 }
 
-variable "controller-region" {
-  type = string
+variable "vpc" {
+  type      = map(object({
+    no      = number
+    name    = string
+    region  = string
+    zone    = string
+    machine = string
+    image   = string
+    size    = string
+    subnet  = string
+    ip      = list(string)
+    fw      = list(string)
+  }))
 }
 
-variable "controller-zone" {
-  type = string
-}
-
-variable "controller-subnet" {
-  type = string
-}
-
-variable "controller-fw-ex-ports" {
-  type = list(string)
-}
-
-variable "worker-region" {
-  type = string
-}
-
-variable "worker-zone" {
-  type = string
-}
-
-variable "worker-subnet" {
-  type = string
-}
-
-variable "worker-fw-ex-ports" {
-  type = list(string)
-}
-
-variable "machine" {
-  type = string
-}
-
-variable "image" {
-  type = string
-}
-
-variable "size" {
-  type = string
-}
-
-
-variable "controller-no" {
-  type = number
-}
-
-variable "controller-name" {
-  type = list(string)
-}
-
-variable "controller-ip" {
-  type = list(string)
-}
 
 variable "target-pool" {
   type = list(string)
 }
 
-variable "worker-no" {
-  type = number
-}
-
-variable "worker-name" {
-  type = list(string)
-}
-
-variable "worker-ip" {
-  type = list(string)
+variable "pod-cidr-range" {
+  type = string
 }
 
 variable "pod-cidr" {
   type = list(string)
-}
-
-variable "pod-cidr-range" {
-  type = string
 }
 
 variable "service-cluster-ip-range" {
