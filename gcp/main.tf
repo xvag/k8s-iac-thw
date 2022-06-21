@@ -139,8 +139,9 @@ resource "google_compute_http_health_check" "k8s-health-check" {
 }
 
 resource "google_compute_target_pool" "k8s-target-pool" {
-  name = "k8s-target-pool"
+  name      = "k8s-target-pool"
   instances = var.target-pool
+  region    = var.controller-region
   health_checks = [
     google_compute_http_health_check.k8s-health-check.name,
   ]
@@ -166,7 +167,9 @@ resource "google_compute_route" "k8s-pods-route" {
   network     = "worker-vpc"
   next_hop_ip = var.worker-ip[count.index]
   depends_on = [
-    google_compute_subnetwork.worker-subnet
+    google_compute_subnetwork.worker-subnet,
+    google_compute_network_peering.controller-worker,
+    google_compute_network_peering.worker-controller
   ]
 }
 
