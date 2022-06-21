@@ -84,6 +84,7 @@ resource "google_compute_target_pool" "k8s-target-pool" {
   instances = [
     "${var.zone}/${var.controller-name[0]}",
     "${var.zone}/${var.controller-name[1]}",
+    "${var.zone}/${var.controller-name[2]}",
   ]
   health_checks = [
     google_compute_http_health_check.k8s-health-check.name,
