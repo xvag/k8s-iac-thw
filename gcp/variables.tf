@@ -20,16 +20,36 @@ variable "ssh_key" {
   sensitive = true
 }
 
-variable "region" {
+variable "controller-region" {
   type = string
 }
 
-variable "zone" {
+variable "controller-zone" {
   type = string
 }
 
-variable "subnet" {
+variable "controller-subnet" {
   type = string
+}
+
+variable "controller-fw-ex-ports" {
+  type = list(string)
+}
+
+variable "worker-region" {
+  type = string
+}
+
+variable "worker-zone" {
+  type = string
+}
+
+variable "worker-subnet" {
+  type = string
+}
+
+variable "worker-fw-ex-ports" {
+  type = list(string)
 }
 
 variable "machine" {
@@ -44,9 +64,6 @@ variable "size" {
   type = string
 }
 
-variable "fw-ex-ports" {
-  type = list(string)
-}
 
 variable "controller-no" {
   type = number
