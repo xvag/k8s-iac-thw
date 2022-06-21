@@ -1,0 +1,18 @@
+# First generate the coredns deployment to define the replicas number
+# and then deploy
+
+- name: Generate coredns deployment
+  become: false
+  template:
+    src: coredns-1.8.3.yaml.j2
+    dest: /tmp/k8s/coredns.yaml
+  delegate_to: localhost
+  run_once: true
+
+- name: Deploy coredns
+  become: false
+  kubernetes.core.k8s:
+    state: present
+    src: /tmp/k8s/coredns.yaml
+  delegate_to: localhost
+  run_once: true

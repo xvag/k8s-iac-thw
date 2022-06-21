@@ -1,7 +1,7 @@
 - name: Retrieve PUBLIC IP
   shell: |
     gcloud compute addresses describe k8s-ip \
-      --region $(gcloud config get-value compute/region) \
+      --region {{ controller_region }} \
       --format 'value(address)'
   register: public_ip
 

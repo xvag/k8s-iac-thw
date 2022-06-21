@@ -27,7 +27,7 @@
 - name: Get PUBLIC ADDRESS
   shell: |
     gcloud compute addresses describe k8s-ip \
-      --region $(gcloud config get-value compute/region) \
+      --region {{ controller_region }} \
       --format 'value(address)'
   register: public_ip
   delegate_to: localhost

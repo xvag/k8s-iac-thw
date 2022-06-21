@@ -64,6 +64,8 @@
   hosts: localhost
   tags:
     - r07
+  vars_files:
+    - vars.yml
   roles:
     - 07-remote
 
@@ -72,5 +74,7 @@
   become: yes
   tags:
     - r08
+  vars_files:
+    - vars.yml
   roles:
     - 08-post-deploy

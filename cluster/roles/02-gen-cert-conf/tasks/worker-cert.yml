@@ -8,6 +8,7 @@
 - name: Get EXTERNAL IPs
   shell: |
     gcloud compute instances describe {{ item }} \
+      --zone {{ worker_zone }} \
       --format 'value(networkInterfaces[0].accessConfigs[0].natIP)'
   with_items:
     "{{ groups['workers'] }}"
@@ -16,6 +17,7 @@
 - name: Get INTERNAL IPs
   shell: |
     gcloud compute instances describe {{ item }} \
+      --zone {{ worker_zone }} \
       --format 'value(networkInterfaces[0].networkIP)'
   with_items:
     "{{ groups['workers'] }}"
