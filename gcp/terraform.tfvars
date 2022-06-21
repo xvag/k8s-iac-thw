@@ -24,6 +24,12 @@ controller-no   = 3                                # Number of Controllers
 controller-name = ["controller-0","controller-1","controller-2"]  # Names
 controller-ip   = ["10.240.0.10","10.240.0.11","10.240.0.12"]    # Internal IP
 
+target-pool     = [
+                    "${var.zone}/${var.controller-name[0]}",
+                    "${var.zone}/${var.controller-name[1]}",
+                    "${var.zone}/${var.controller-name[2]}",
+                  ]
+
 ###
 ### Worker variables
 ###

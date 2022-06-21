@@ -60,6 +60,10 @@ variable "controller-ip" {
   type = list(string)
 }
 
+variable "target-pool" {
+  type = list(string)
+}
+
 variable "worker-no" {
   type = number
 }
