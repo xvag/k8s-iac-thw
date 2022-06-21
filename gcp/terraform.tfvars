@@ -33,7 +33,7 @@ target-pool     = [
 worker-region  = "us-central1"
 worker-zone    = "us-central1-c"
 worker-subnet  = "10.250.0.0/24"
-worker-fw-ex-ports   = ["22","32000"]
+worker-fw-ex-ports   = ["22"]
 
 worker-no      = 3                                                 # Number of Workers
 worker-name    = ["worker-0","worker-1","worker-2"]                # Names
