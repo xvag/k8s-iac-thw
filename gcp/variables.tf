@@ -20,7 +20,6 @@ variable "ssh_key" {
   type        = string
   sensitive   = true
   description = "SSH .pub key for connecting to VMs"
-
 }
 
 variable "vpc" {
@@ -37,7 +36,6 @@ variable "vpc" {
     fw      = list(string)
   }))
 }
-
 
 variable "target-pool" {
   type = list(string)

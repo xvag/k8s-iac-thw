@@ -1,3 +1,8 @@
+###
+### VM variables
+### The number of IPs have to match the number of instances (no)
+###
+
 vpc = {
   "controller" = {
     no      = 3
@@ -16,23 +21,35 @@ vpc = {
     name    = "worker"
     region  = "us-central1"
     zone    = "us-central1-c"
-    subnet  = "10.250.0.0/24"
     machine = "e2-standard-2"
     image   = "ubuntu-os-cloud/ubuntu-2004-lts"
     size    = "200"
+    subnet  = "10.250.0.0/24"
     ip      = ["10.250.0.20","10.250.0.21","10.250.0.22"]
     fw      = ["22"]
   }
 }
 
+###
+### Kubernetes Cluster IP range
+###
+
+service-cluster-ip-range = "10.32.0.0/24"
+
+###
+### Pod Network variables
+### Apply one POD-CIDR for every Worker instance
+###
+
+pod-cidr-range = "10.200.0.0/16"
+pod-cidr       = ["10.200.0.0/24","10.200.1.0/24","10.200.2.0/24"]
+
+###
+### Target Pool of the Controllers for the Health Checks
+###
 
 target-pool     = [
                     "europe-west4-a/controller-0",
                     "europe-west4-a/controller-1",
                     "europe-west4-a/controller-2",
                   ]
-
-pod-cidr-range = "10.200.0.0/16"
-pod-cidr       = ["10.200.0.0/24","10.200.1.0/24","10.200.2.0/24"]
-
-service-cluster-ip-range = "10.32.0.0/24"
