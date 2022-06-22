@@ -22,7 +22,7 @@ vpc = {
 ###
 
 fw = {
-  fw_in_cluster = {
+  in_cluster = {
     "tcp" = {
       ports    = []
     }
@@ -33,7 +33,7 @@ fw = {
       ports    = []
     }
   },
-  fw_controller_vpc = {
+  controller_vpc = {
     "tcp" = {
       ports    = ["22","6443"]
     }
@@ -41,7 +41,7 @@ fw = {
       ports    = []
     }
   },
-  fw_worker_vpc = {
+  worker_vpc = {
     "tcp" = {
       ports    = ["22"]
     }
@@ -49,7 +49,7 @@ fw = {
       ports    = []
     }
   },
-  fw_allow_health_checks = {
+  allow_health_checks = {
     "tcp" = {
       ports    = []
     }
