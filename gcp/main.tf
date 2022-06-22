@@ -42,8 +42,8 @@ module "w-fw-in" {
   fw_name    = "w-fw-in"
   vpc_name   = module.w-vpc.vpc_name
   vpc_subnet = module.w-vpc.subnet_name
-  rule       = var.fw_in
-  src_ranges     = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
+  rules      = var.fw_in
+  src_ranges = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
 }
 
 module "c-fw-ex" {
@@ -51,7 +51,7 @@ module "c-fw-ex" {
   fw_name    = "c-fw-ex"
   vpc_name   = module.c-vpc.vpc_name
   vpc_subnet = module.c-vpc.subnet_name
-  rule       = var.fw_ex_c
+  rules      = var.fw_ex_c
   src_ranges = ["0.0.0.0/0"]
 }
 
@@ -60,7 +60,7 @@ module "w-fw-ex" {
   fw_name    = "w-fw-in"
   vpc_name   = module.w-vpc.vpc_name
   vpc_subnet = module.w-vpc.subnet_name
-  rule       = var.fw_ex_w
+  rules      = var.fw_ex_w
   src_ranges = ["0.0.0.0/0"]
 }
 
