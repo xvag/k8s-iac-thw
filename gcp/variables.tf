@@ -52,7 +52,6 @@ variable "fw1" {
     type        = map(object({
       protocol  = string
       ports     = list(string)
-      ranges    = list(string)
     }))
 }
 
