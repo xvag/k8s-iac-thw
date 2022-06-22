@@ -22,8 +22,8 @@ fw1 = {
     protocol = "tcp"
     ports    = ["22","24","27"]
   }
-  "upd" = {
-    protocol = "upd"
+  "udp" = {
+    protocol = "udp"
     ports    = []
   }
   "icmp" = {
@@ -31,7 +31,6 @@ fw1 = {
     ports    = []
   }
 }
-
 
 vm = {
   "controller" = {

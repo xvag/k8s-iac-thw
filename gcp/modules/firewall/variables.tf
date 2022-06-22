@@ -18,3 +18,7 @@ variable "rule" {
       ports     = list(string)
     }))
 }
+
+variable "src_ranges" {
+    description = "Source IP Ranges"
+}

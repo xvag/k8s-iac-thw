@@ -9,7 +9,7 @@ resource "google_compute_firewall" "firewall" {
         ports    = allow.value.ports
     }
   }
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = var.src_ranges
 
   depends_on = [
     var.vpc_subnet
