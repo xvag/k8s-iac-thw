@@ -8,8 +8,8 @@ resource "google_compute_firewall" "firewall" {
         protocol = allow.value.protocol
         ports    = allow.value.ports
     }
-    source_ranges = allow.value.ranges
   }
+  source_ranges = [allow.value.ranges]
 
   depends_on = [
     var.vpc_subnet
