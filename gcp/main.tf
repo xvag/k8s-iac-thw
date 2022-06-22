@@ -1,4 +1,4 @@
-module "vpc" {
+module "c-vpc" {
   source        = "./modules/vpc"
   vpc_name      = var.vpc.controller.name
   subnet_name   = "${var.vpc.controller.name}-subnet"
@@ -8,7 +8,7 @@ module "vpc" {
   fw_ports      = var.vpc.controller.fw_ports
 }
 
-module "vpc" {
+module "w-vpc" {
   source        = "./modules/vpc"
   vpc_name      = var.vpc.worker.name
   subnet_name   = "${var.vpc.worker.name}-subnet"
@@ -18,7 +18,7 @@ module "vpc" {
   fw_ports      = var.vpc.worker.fw_ports
 }
 
-module "vm" {
+module "c-vm" {
   count = 3
 
   source     = "./modules/vm"
@@ -31,7 +31,7 @@ module "vm" {
   vm_tags    = var.vm.controller.tags
 }
 
-module "vm" {
+module "w-vm" {
   count = 3
 
   source     = "./modules/vm"
