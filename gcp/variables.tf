@@ -48,28 +48,10 @@ variable "vm" {
   }))
 }
 
-variable "fw_in_cluster" {
-    type        = map(object({
+variable "fw" {
+    type        = map(map(object({
       ports     = list(string)
-    }))
-}
-
-variable "fw_controller_vpc" {
-    type        = map(object({
-      ports     = list(string)
-    }))
-}
-
-variable "fw_worker_vpc" {
-    type        = map(object({
-      ports     = list(string)
-    }))
-}
-
-variable "fw_allow_health_checks" {
-    type        = map(object({
-      ports     = list(string)
-    }))
+    })))
 }
 
 variable "pod_cidr" {

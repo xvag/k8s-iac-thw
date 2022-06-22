@@ -21,39 +21,38 @@ vpc = {
 ### Firewalls
 ###
 
-fw_in_cluster = {
-  "tcp" = {
-    ports    = []
-  }
-  "udp" = {
-    ports    = []
-  }
-  "icmp" = {
-    ports    = []
-  }
-}
-
-fw_controller_vpc = {
-  "tcp" = {
-    ports    = ["22","6443"]
-  }
-  "icmp" = {
-    ports    = []
-  }
-}
-
-fw_worker_vpc = {
-  "tcp" = {
-    ports    = ["22"]
-  }
-  "icmp" = {
-    ports    = []
-  }
-}
-
-fw_allow_health_checks = {
-  "tcp" = {
-    ports    = []
+fw = {
+  fw_in_cluster = {
+    "tcp" = {
+      ports    = []
+    }
+    "udp" = {
+      ports    = []
+    }
+    "icmp" = {
+      ports    = []
+    }
+  },
+  fw_controller_vpc = {
+    "tcp" = {
+      ports    = ["22","6443"]
+    }
+    "icmp" = {
+      ports    = []
+    }
+  },
+  fw_worker_vpc = {
+    "tcp" = {
+      ports    = ["22"]
+    }
+    "icmp" = {
+      ports    = []
+    }
+  },
+  fw_allow_health_checks = {
+    "tcp" = {
+      ports    = []
+    }
   }
 }
 
