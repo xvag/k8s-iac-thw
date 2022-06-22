@@ -1,5 +1,5 @@
 ###
-### Variable Definitions
+### VPC/Subnets
 ###
 
 vpc = {
@@ -17,7 +17,11 @@ vpc = {
   }
 }
 
-fw_in = {
+###
+### Firewalls
+###
+
+fw_in_cluster = {
   "tcp" = {
     ports    = []
   }
@@ -29,7 +33,7 @@ fw_in = {
   }
 }
 
-fw_ex_c = {
+fw_controller_vpc = {
   "tcp" = {
     ports    = ["22","6443"]
   }
@@ -38,7 +42,7 @@ fw_ex_c = {
   }
 }
 
-fw_ex_w = {
+fw_worker_vpc = {
   "tcp" = {
     ports    = ["22"]
   }
@@ -47,11 +51,15 @@ fw_ex_w = {
   }
 }
 
-fw_ahc = {
+fw_allow_health_checks = {
   "tcp" = {
     ports    = []
   }
 }
+
+###
+### VMs
+###
 
 vm = {
   "controller" = {

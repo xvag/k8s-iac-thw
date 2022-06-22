@@ -48,25 +48,25 @@ variable "vm" {
   }))
 }
 
-variable "fw_in" {
+variable "fw_in_cluster" {
     type        = map(object({
       ports     = list(string)
     }))
 }
 
-variable "fw_ex_c" {
+variable "fw_controller_vpc" {
     type        = map(object({
       ports     = list(string)
     }))
 }
 
-variable "fw_ex_w" {
+variable "fw_worker_vpc" {
     type        = map(object({
       ports     = list(string)
     }))
 }
 
-variable "fw_ahc" {
+variable "fw_allow_health_checks" {
     type        = map(object({
       ports     = list(string)
     }))
