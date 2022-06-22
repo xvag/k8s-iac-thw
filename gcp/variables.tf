@@ -48,7 +48,19 @@ variable "vm" {
   }))
 }
 
-variable "fw1" {
+variable "fw_in" {
+    type        = map(object({
+      ports     = list(string)
+    }))
+}
+
+variable "fw_ex_c" {
+    type        = map(object({
+      ports     = list(string)
+    }))
+}
+
+variable "fw_ex_w" {
     type        = map(object({
       ports     = list(string)
     }))
