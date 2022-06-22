@@ -48,6 +48,18 @@ module "w-fw-in" {
   src_ranges = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
 }
 
+module "k8s-pods-route" {
+  count = 3
+
+  source      = "./modules/route"
+  route_name  = "k8s-route-pods-worker-${count.index}"
+  route_dest  = var.pod_cidr[count.index]
+  route_hopip = var.vm.worker.ip[count.index]
+  network     = module.w-vpc.vpc_name
+  subnet_name = module.w-vpc.subnet_name
+  peer_cw     = module.c-peer.peer_name
+  peer_wc     = module.w-peer.peer_name
+}
 
 module "c-vm" {
   count = 3
