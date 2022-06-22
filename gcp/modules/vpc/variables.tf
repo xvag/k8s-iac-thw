@@ -13,11 +13,3 @@ variable "subnet_region" {
 variable "subnet_cidr" {
     description = "Subnet CIDR"
 }
-
-variable "fw_name" {
-    description = "Firewall Name"
-}
-
-variable "fw_ports" {
-    description = "Firewall TCP Ports to Allow"
-}

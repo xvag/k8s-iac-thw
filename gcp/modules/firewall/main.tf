@@ -3,7 +3,7 @@ resource "google_compute_firewall" "firewall" {
   network  = var.vpc_name
 
   dynamic "allow" {
-    for_each = var.rule
+    for_each = var.rules
     content {
         protocol = allow.key
         ports    = allow.value.ports

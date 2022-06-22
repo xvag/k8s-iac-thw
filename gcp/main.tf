@@ -4,8 +4,6 @@ module "c-vpc" {
   subnet_name   = "${var.vpc.controller.name}-subnet"
   subnet_region = var.vpc.controller.region
   subnet_cidr   = var.vpc.controller.cidr
-  fw_name       = "${var.vpc.controller.name}-fw"
-  fw_ports      = var.vpc.controller.fw_ports
 }
 
 module "w-vpc" {
@@ -14,8 +12,6 @@ module "w-vpc" {
   subnet_name   = "${var.vpc.worker.name}-subnet"
   subnet_region = var.vpc.worker.region
   subnet_cidr   = var.vpc.worker.cidr
-  fw_name       = "${var.vpc.worker.name}-fw"
-  fw_ports      = var.vpc.worker.fw_ports
 }
 
 module "c-peer" {
@@ -37,8 +33,8 @@ module "c-fw-in" {
   fw_name    = "c-fw-in"
   vpc_name   = module.c-vpc.vpc_name
   vpc_subnet = module.c-vpc.subnet_name
-  rule       = var.fw1
-  src_ranges     = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
+  rules      = var.fw_in
+  src_ranges = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
 }
 
 module "w-fw-in" {
@@ -46,9 +42,26 @@ module "w-fw-in" {
   fw_name    = "w-fw-in"
   vpc_name   = module.w-vpc.vpc_name
   vpc_subnet = module.w-vpc.subnet_name
-  rule       = var.fw1
+  rule       = var.fw_in
   src_ranges     = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
+}
 
+module "c-fw-ex" {
+  source     = "./modules/firewall"
+  fw_name    = "c-fw-ex"
+  vpc_name   = module.c-vpc.vpc_name
+  vpc_subnet = module.c-vpc.subnet_name
+  rule       = var.fw_ex_c
+  src_ranges = ["0.0.0.0/0"]
+}
+
+module "w-fw-ex" {
+  source     = "./modules/firewall"
+  fw_name    = "w-fw-in"
+  vpc_name   = module.w-vpc.vpc_name
+  vpc_subnet = module.w-vpc.subnet_name
+  rule       = var.fw_ex_w
+  src_ranges = ["0.0.0.0/0"]
 }
 
 module "k8s-pods-route" {

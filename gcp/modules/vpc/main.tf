@@ -9,19 +9,3 @@ resource "google_compute_subnetwork" "subnet" {
   ip_cidr_range = var.subnet_cidr
   network       = google_compute_network.vpc.id
 }
-
-resource "google_compute_firewall" "fw" {
-  name     = var.fw_name
-  network  = var.vpc_name
-  allow {
-    protocol = "tcp"
-    ports    = var.fw_ports
-  }
-  allow {
-    protocol = "icmp"
-  }
-  source_ranges = ["0.0.0.0/0"]
-  depends_on = [
-    google_compute_subnetwork.subnet
-  ]
-}

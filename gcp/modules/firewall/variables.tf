@@ -10,7 +10,7 @@ variable "vpc_subnet" {
     description = "VPC Subnet"
 }
 
-variable "rule" {
+variable "rules" {
     description = "Firewall Rules"
 
     type        = map(object({

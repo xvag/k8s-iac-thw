@@ -17,14 +17,34 @@ vpc = {
   }
 }
 
-fw1 = {
+fw_in = {
   "tcp" = {
     ports    = []
   }
   "udp" = {
     ports    = []
   }
+  "icmp" = {
+    ports    = []
+  }
+}
 
+fw_ex_c = {
+  "tcp" = {
+    ports    = []
+  }
+  "icmp" = {
+    ports    = []
+  }
+}
+
+fw_ex_w = {
+  "tcp" = {
+    ports    = []
+  }
+  "icmp" = {
+    ports    = []
+  }
 }
 
 vm = {
