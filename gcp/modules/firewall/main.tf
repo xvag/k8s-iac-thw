@@ -5,7 +5,7 @@ resource "google_compute_firewall" "firewall" {
   dynamic "allow" {
     for_each = var.rule
     content {
-        protocol = allow.value.protocol
+        protocol = allow.key
         ports    = allow.value.ports
     }
   }
