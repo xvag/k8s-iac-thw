@@ -6,7 +6,7 @@ output "subnet_name" {
     value = google_compute_subnetwork.subnet.name
 }
 
-output "network_self_link" {
-  value       = module.vpc.network_self_link
+output "vpc_self_link" {
+  value       = google_compute_network.vpc.self_link
   description = "The URI of the VPC being created"
 }
