@@ -1,6 +1,6 @@
 module "c-vpc" {
   source        = "./modules/vpc"
-  vpc_name      = var.vpc.controller.name
+  vpc_name      = "${var.vpc.controller.name}-vpc"
   subnet_name   = "${var.vpc.controller.name}-subnet"
   subnet_region = var.vpc.controller.region
   subnet_cidr   = var.vpc.controller.cidr
@@ -10,7 +10,7 @@ module "c-vpc" {
 
 module "w-vpc" {
   source        = "./modules/vpc"
-  vpc_name      = var.vpc.worker.name
+  vpc_name      = "${var.vpc.worker.name}-vpc"
   subnet_name   = "${var.vpc.worker.name}-subnet"
   subnet_region = var.vpc.worker.region
   subnet_cidr   = var.vpc.worker.cidr
@@ -31,7 +31,6 @@ module "c-vm" {
   vm_tags    = var.vm.controller.tags
   vm_scopes  = var.vm.controller.scopes
   vm_subnet  = module.c-vpc.subnet_name
-  vm_meta    = var.vm.controller.meta
 }
 
 module "w-vm" {
@@ -47,5 +46,5 @@ module "w-vm" {
   vm_tags    = var.vm.worker.tags
   vm_scopes  = var.vm.worker.scopes
   vm_subnet  = module.w-vpc.subnet_name
-  vm_meta    = var.vm.worker.meta
+  pod_cidr   = var.pod_cidr[count.index]
 }

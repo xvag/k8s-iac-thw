@@ -34,6 +34,7 @@ variable "vm_subnet" {
     description = "VM Subnet"
 }
 
-variable "vm_meta" {
-    description = "VM metadata"
+variable "pod_cidr" {
+    description = "POD CIDR (optional metadata)"
+    default     = null
 }

@@ -21,10 +21,11 @@ resource "google_compute_instance" "vm" {
   service_account{
     scopes = var.vm_scopes
   }
-  metadata = var.vm_meta
-  ##{
-  #  pod-cidr = var.pod-cidr[count.index]
-  ##}
+
+  metadata = {
+    pod-cidr = var.pod_cidr
+  }
+
   depends_on = [
     var.vm_subnet
   ]

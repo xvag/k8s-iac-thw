@@ -62,4 +62,4 @@ service-cluster-ip-range = "10.32.0.0/24"
 
 ### Apply one POD-CIDR for every Worker instance
 pod-cidr-range = "10.200.0.0/16"
-pod-cidr       = ["10.200.0.0/24","10.200.1.0/24","10.200.2.0/24"]
+pod_cidr       = ["10.200.0.0/24","10.200.1.0/24","10.200.2.0/24"]
