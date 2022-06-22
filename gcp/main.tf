@@ -18,6 +18,13 @@ module "w-vpc" {
   fw_ports      = var.vpc.worker.fw_ports
 }
 
+module "c-peer" {
+  source    = "./modules/peer"
+  peer_name = "c-w"
+  net       = module.c-vpc.vpc_name
+  net_peer  = module.w-vpc.vpc_name
+}
+
 module "c-vm" {
   count = 3
 
