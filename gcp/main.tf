@@ -45,7 +45,7 @@ module "w-fw-in" {
   fw_name    = "w-fw-in"
   vpc_name   = module.w-vpc.vpc_name
   vpc_subnet = module.w-vpc.subnet_name
-  src_ranges = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
+  rule       = var.fw1
 }
 
 module "k8s-pods-route" {
