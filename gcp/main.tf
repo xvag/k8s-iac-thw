@@ -31,7 +31,7 @@ module "c-vm" {
   vm_tags    = var.vm.controller.tags
   vm_scopes  = var.vm.controller.scopes
   vm_subnet  = module.c-vpc.subnet_name
-  vm_meta    - var.vm.controller.meta
+  vm_meta    = var.vm.controller.meta
 }
 
 module "w-vm" {
