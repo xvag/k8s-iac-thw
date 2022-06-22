@@ -57,7 +57,7 @@ module "c-fw-ex" {
 
 module "w-fw-ex" {
   source     = "./modules/firewall"
-  fw_name    = "w-fw-in"
+  fw_name    = "w-fw-ex"
   vpc_name   = module.w-vpc.vpc_name
   vpc_subnet = module.w-vpc.subnet_name
   rules      = var.fw_ex_w
