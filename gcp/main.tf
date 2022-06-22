@@ -22,7 +22,7 @@ module "c-vm" {
   count = 3
 
   source     = "./modules/vm"
-  vm_name    = var.vm.controller.name
+  vm_name    = "${var.vm.controller.name}-${count.index}"
   vm_zone    = var.vm.controller.zone
   vm_machine = var.vm.controller.machine
   vm_image   = var.vm.controller.image
@@ -38,7 +38,7 @@ module "w-vm" {
   count = 3
 
   source     = "./modules/vm"
-  vm_name    = var.vm.worker.name
+  vm_name    = "${var.vm.worker.name}-${count.index}"
   vm_zone    = var.vm.worker.zone
   vm_machine = var.vm.worker.machine
   vm_image   = var.vm.worker.image
