@@ -55,7 +55,7 @@ module "k8s-pods-route" {
   route_name  = "k8s-route-pods-worker-${count.index}"
   route_dest  = var.pod_cidr[count.index]
   route_hopip = var.vm.worker.ip[count.index]
-  network     = module.w-vpc.vpc_name
+  vpc_name    = module.w-vpc.vpc_name
   subnet_name = module.w-vpc.subnet_name
   peer_cw     = module.c-peer.peer_name
   peer_wc     = module.w-peer.peer_name
