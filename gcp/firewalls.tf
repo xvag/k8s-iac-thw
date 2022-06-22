@@ -19,7 +19,7 @@ module "fw-in-cluster-w" {
 
 module "fw_allow_health_checks" {
   source     = "./modules/firewall"
-  fw_name    = "fw_allow_health_checks"
+  fw_name    = "fw-allow-health-checks"
   vpc_name   = module.c-vpc.vpc_name
   vpc_subnet = module.c-vpc.subnet_name
   rules      = var.fw_allow_health_checks
@@ -28,7 +28,7 @@ module "fw_allow_health_checks" {
 
 module "fw_controller_vpc" {
   source     = "./modules/firewall"
-  fw_name    = "fw_controller_vpc"
+  fw_name    = "fw-controller-vpc"
   vpc_name   = module.c-vpc.vpc_name
   vpc_subnet = module.c-vpc.subnet_name
   rules      = var.fw_controller_vpc
@@ -37,7 +37,7 @@ module "fw_controller_vpc" {
 
 module "fw_worker_vpc" {
   source     = "./modules/firewall"
-  fw_name    = "fw_worker_vpc"
+  fw_name    = "fw-worker-vpc"
   vpc_name   = module.w-vpc.vpc_name
   vpc_subnet = module.w-vpc.subnet_name
   rules      = var.fw_worker_vpc
