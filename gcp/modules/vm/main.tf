@@ -13,7 +13,7 @@ resource "google_compute_instance" "vm" {
     }
   }
   network_interface {
-    subnetwork = var.vm_subnet.self_link
+    subnetwork = var.vm_subnet
     network_ip = var.vm_ip
     access_config {
     }
