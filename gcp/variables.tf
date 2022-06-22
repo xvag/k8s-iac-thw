@@ -80,7 +80,7 @@ variable "pod_cidr_range" {
   type = string
 }
 
-variable "target-pool" {
+variable "target_pool" {
   type = list(string)
 }
 

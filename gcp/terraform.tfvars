@@ -80,7 +80,7 @@ vm = {
 ### Target Pool of the Controllers for the Health Checks
 ###
 
-target-pool     = [
+target_pool     = [
                     "europe-west4-a/controller-0",
                     "europe-west4-a/controller-1",
                     "europe-west4-a/controller-2",

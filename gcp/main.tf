@@ -1,8 +1,4 @@
-module "k8s-ip" {
-  source       = "./modules/address"
-  address_name = "k8s-ip"
-  vpc_region   = var.vpc.controller.region
-}
+
 
 module "c-vpc" {
   source        = "./modules/vpc"
@@ -68,15 +64,6 @@ module "w-fw-ex" {
   vpc_subnet = module.w-vpc.subnet_name
   rules      = var.fw_ex_w
   src_ranges = ["0.0.0.0/0"]
-}
-
-module "fw-ahc" {
-  source     = "./modules/firewall"
-  fw_name    = "fw-ahc"
-  vpc_name   = module.c-vpc.vpc_name
-  vpc_subnet = module.c-vpc.subnet_name
-  rules      = var.fw_ahc
-  src_ranges = ["209.85.152.0/22", "209.85.204.0/22", "35.191.0.0/16"]
 }
 
 module "k8s-pods-route" {
