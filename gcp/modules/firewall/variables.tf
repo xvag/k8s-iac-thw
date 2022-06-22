@@ -16,6 +16,5 @@ variable "rule" {
     type        = map(object({
       protocol  = string
       ports     = list(string)
-      ranges    = list(string)
     }))
 }
