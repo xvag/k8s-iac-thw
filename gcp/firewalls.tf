@@ -17,7 +17,7 @@ module "fw-in-cluster-w" {
   src_ranges = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
 }
 
-module "fw_allow_health_checks" {
+module "fw-allow-health-checks" {
   source     = "./modules/firewall"
   fw_name    = "fw-allow-health-checks"
   vpc_name   = module.c-vpc.vpc_name
@@ -26,7 +26,7 @@ module "fw_allow_health_checks" {
   src_ranges = ["209.85.152.0/22", "209.85.204.0/22", "35.191.0.0/16"]
 }
 
-module "fw_controller_vpc" {
+module "fw-controller-vpc" {
   source     = "./modules/firewall"
   fw_name    = "fw-controller-vpc"
   vpc_name   = module.c-vpc.vpc_name
@@ -35,7 +35,7 @@ module "fw_controller_vpc" {
   src_ranges = ["0.0.0.0/0"]
 }
 
-module "fw_worker_vpc" {
+module "fw-worker-vpc" {
   source     = "./modules/firewall"
   fw_name    = "fw-worker-vpc"
   vpc_name   = module.w-vpc.vpc_name
