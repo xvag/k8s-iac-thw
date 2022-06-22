@@ -67,7 +67,7 @@ vm = {
     machine = "e2-standard-2"
     image   = "ubuntu-os-cloud/ubuntu-2004-lts"
     size    = "200"
-    ip      = ["10.240.0.10","10.240.0.11","10.240.0.12"]
+    ip      = ["10.240.0.10","10.240.0.11"]
     tags    = ["k8s", "controller"]
     scopes  = ["compute-rw","storage-ro","service-management","service-control","logging-write","monitoring"]
   },
