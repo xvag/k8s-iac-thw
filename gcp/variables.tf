@@ -1,3 +1,7 @@
+###
+### Variable Declarations
+###
+
 variable "gcp_project" {
   type      = string
   sensitive = true

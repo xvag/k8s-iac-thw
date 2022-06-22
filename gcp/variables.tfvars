@@ -1,7 +1,8 @@
 ###
-### VM variables
-### The number of IPs have to match the number of instances (no)
+### Variable Definitions
 ###
+
+### The amount of IPs have to match the amount of instances (no)
 
 vpc = {
   "controller" = {
