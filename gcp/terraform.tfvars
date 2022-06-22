@@ -24,9 +24,7 @@ fw1 = {
   "udp" = {
     ports    = []
   }
-  "icmp" = {
-    ports    = []
-  }
+
 }
 
 vm = {
