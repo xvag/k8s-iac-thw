@@ -1,7 +1,7 @@
 # Worker Resources
 
 resource "google_compute_network" "worker-vpc" {
-  name = "worker-vpc-test"
+  name = "worker-vpc"
   auto_create_subnetworks = "false"
 }
 
