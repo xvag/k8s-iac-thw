@@ -1,3 +1,9 @@
+module "k8s-ip" {
+  source       = "./modules/address"
+  address_name = "k8s-ip"
+  vpc_region   = var.vpc.controller.region
+}
+
 module "c-vpc" {
   source        = "./modules/vpc"
   vpc_name      = "${var.vpc.controller.name}-vpc"
