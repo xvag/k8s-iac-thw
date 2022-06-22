@@ -14,7 +14,6 @@ variable "rule" {
     description = "Firewall Rules"
 
     type        = map(object({
-      protocol  = string
       ports     = list(string)
     }))
 }

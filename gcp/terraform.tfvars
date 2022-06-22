@@ -19,15 +19,12 @@ vpc = {
 
 fw1 = {
   "tcp" = {
-    protocol = "tcp"
     ports    = []
   }
   "udp" = {
-    protocol = "udp"
     ports    = []
   }
   "icmp" = {
-    protocol = "icmp"
     ports    = []
   }
 }
