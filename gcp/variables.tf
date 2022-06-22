@@ -52,12 +52,12 @@ variable "pod_cidr" {
   type = list(string)
 }
 
-variable "target-pool" {
-  type = list(string)
+variable "pod_cidr_range" {
+  type = string
 }
 
-variable "pod-cidr-range" {
-  type = string
+variable "target-pool" {
+  type = list(string)
 }
 
 variable "service-cluster-ip-range" {

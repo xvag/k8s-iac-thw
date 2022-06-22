@@ -32,6 +32,23 @@ module "w-peer" {
   net_peer  = module.c-vpc.vpc_self_link
 }
 
+module "c-fw-in" {
+  source     = "./modules/firewall"
+  fw_name    = "c-fw-in"
+  vpc_name   = module.c-vpc.vpc_name
+  vpc_subnet = module.c-vpc.subnet_name
+  src_ranges = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
+}
+
+module "w-fw-in" {
+  source     = "./modules/firewall"
+  fw_name    = "w-fw-in"
+  vpc_name   = module.w-vpc.vpc_name
+  vpc_subnet = module.w-vpc.subnet_name
+  src_ranges = ["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]
+}
+
+
 module "c-vm" {
   count = 3
 
