@@ -26,6 +26,14 @@ variable "vm_tags" {
     description = "VM Tags"
 }
 
+variable "vm_scopes" {
+    description = "VM Service Account Scopes"
+}
+
 variable "vm_subnet" {
     description = "VM Subnet"
+}
+
+variable "vm_meta" {
+    description = "VM metadata"
 }

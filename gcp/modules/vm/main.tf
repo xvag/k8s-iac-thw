@@ -19,12 +19,12 @@ resource "google_compute_instance" "vm" {
     }
   }
   service_account{
-    scopes = ["compute-rw","storage-ro","service-management","service-control","logging-write","monitoring"]
+    scopes = var.vm_scopes
   }
-  metadata = {
-    ssh-keys = "${var.ssh_user}:${var.ssh_key}"
-    pod-cidr = var.pod-cidr[count.index]
-  }
+  metadata = var.vm_meta
+  ##{
+  #  pod-cidr = var.pod-cidr[count.index]
+  ##}
   depends_on = [
     var.vm_subnet
   ]

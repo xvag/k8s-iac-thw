@@ -44,6 +44,8 @@ variable "vm" {
     size    = string
     ip      = list(string)
     tags    = list(string)
+    scopes  = list(string)
+    meta    = object({})
   }))
 }
 

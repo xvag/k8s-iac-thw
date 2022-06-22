@@ -2,11 +2,6 @@
 ### Variable Definitions
 ###
 
-###
-### VM Variables
-### The amount of IPs have to match the amount of instances (no)
-###
-
 vpc = {
   "controller" = {
     name     = "controller"
@@ -31,6 +26,8 @@ vm = {
     size    = "200"
     ip      = ["10.240.0.10","10.240.0.11","10.240.0.12"]
     tags    = ["k8s", "controller"]
+    scopes  = ["compute-rw","storage-ro","service-management","service-control","logging-write","monitoring"]
+    meta    = {}
   },
   "worker" = {
     name    = "worker"
@@ -40,6 +37,10 @@ vm = {
     size    = "200"
     ip      = ["10.250.0.20","10.250.0.21","10.250.0.22"]
     tags    = ["k8s", "worker"]
+    scopes  = ["compute-rw","storage-ro","service-management","service-control","logging-write","monitoring"]
+    meta    = {
+               pod-cidr = "10.200.0.0/24"
+              }
   }
 }
 
