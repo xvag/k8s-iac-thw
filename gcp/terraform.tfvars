@@ -20,7 +20,7 @@ vpc = {
 fw1 = {
   "tcp" = {
     protocol = "tcp"
-    ports    = ["22","24","27"]
+    ports    = []
   }
   "udp" = {
     protocol = "udp"
