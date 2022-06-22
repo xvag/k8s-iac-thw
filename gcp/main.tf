@@ -25,6 +25,13 @@ module "c-peer" {
   net_peer  = module.w-vpc.vpc_self_link
 }
 
+module "w-peer" {
+  source    = "./modules/peer"
+  peer_name = "w-c"
+  net       = module.w-vpc.vpc_self_link
+  net_peer  = module.c-vpc.vpc_self_link
+}
+
 module "c-vm" {
   count = 3
 
