@@ -21,8 +21,8 @@ module "w-vpc" {
 module "c-peer" {
   source    = "./modules/peer"
   peer_name = "c-w"
-  net       = module.c-vpc.vpc_name
-  net_peer  = module.w-vpc.vpc_name
+  net       = module.c-vpc.vpc_name.self_link
+  net_peer  = module.w-vpc.vpc_name.self_link
 }
 
 module "c-vm" {
