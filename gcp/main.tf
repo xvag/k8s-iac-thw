@@ -70,7 +70,7 @@ module "w-fw-ex" {
   src_ranges = ["0.0.0.0/0"]
 }
 
-module "w-fw-ex" {
+module "fw-ahc" {
   source     = "./modules/firewall"
   fw_name    = "fw-ahc"
   vpc_name   = module.c-vpc.vpc_name
