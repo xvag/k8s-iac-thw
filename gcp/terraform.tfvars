@@ -31,7 +31,7 @@ fw_in = {
 
 fw_ex_c = {
   "tcp" = {
-    ports    = []
+    ports    = ["22","6443"]
   }
   "icmp" = {
     ports    = []
@@ -40,7 +40,7 @@ fw_ex_c = {
 
 fw_ex_w = {
   "tcp" = {
-    ports    = []
+    ports    = ["22"]
   }
   "icmp" = {
     ports    = []
