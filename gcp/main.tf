@@ -29,6 +29,7 @@ module "c-vm" {
   vm_size    = var.vm.controller.size
   vm_ip      = var.vm.controller.ip[count.index]
   vm_tags    = var.vm.controller.tags
+  vm_subnet  = module.c-vpc.subnet_name
 }
 
 module "w-vm" {
@@ -42,4 +43,5 @@ module "w-vm" {
   vm_size    = var.vm.worker.size
   vm_ip      = var.vm.worker.ip[count.index]
   vm_tags    = var.vm.worker.tags
+  vm_subnet  = module.w-vpc.subnet_name
 }

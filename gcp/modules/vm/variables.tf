@@ -25,3 +25,7 @@ variable "vm_ip" {
 variable "vm_tags" {
     description = "VM Tags"
 }
+
+variable "vm_subnet" {
+    description = "VM Subnet"
+}
