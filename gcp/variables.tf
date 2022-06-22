@@ -45,8 +45,11 @@ variable "vm" {
     ip      = list(string)
     tags    = list(string)
     scopes  = list(string)
-    meta    = object({})
   }))
+}
+
+variable "pod_cidr" {
+  type = list(string)
 }
 
 variable "target-pool" {
@@ -55,10 +58,6 @@ variable "target-pool" {
 
 variable "pod-cidr-range" {
   type = string
-}
-
-variable "pod-cidr" {
-  type = list(string)
 }
 
 variable "service-cluster-ip-range" {
