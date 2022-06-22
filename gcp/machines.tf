@@ -1,6 +1,6 @@
 
 module "c-vm" {
-  count      = length(vm.controller.ip)
+  count      = length(var.vm.controller.ip)
   source     = "./modules/vm"
   vm_name    = "${var.vm.controller.name}-${count.index}"
   vm_zone    = var.vm.controller.zone
@@ -14,7 +14,7 @@ module "c-vm" {
 }
 
 module "w-vm" {
-  count      = length(vm.worker.ip)
+  count      = length(var.vm.worker.ip)
   source     = "./modules/vm"
   vm_name    = "${var.vm.worker.name}-${count.index}"
   vm_zone    = var.vm.worker.zone
