@@ -13,7 +13,7 @@ resource "google_compute_instance" "vm" {
     }
   }
   network_interface {
-    subnetwork = google_compute_subnetwork.var.vm_subnet.self_link
+    subnetwork = var.vm_subnet.self_link
     network_ip = var.vm_ip
     access_config {
     }
@@ -26,6 +26,6 @@ resource "google_compute_instance" "vm" {
     pod-cidr = var.pod-cidr[count.index]
   }
   depends_on = [
-    google_compute_subnetwork.var.vm_subnet
+    var.vm_subnet
   ]
 }
