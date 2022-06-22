@@ -35,3 +35,7 @@ resource "google_compute_firewall" "worker-fw-in" {
     google_compute_subnetwork.worker-subnet
   ]
 }
+
+
+
+["${var.vpc.controller.cidr}","${var.vpc.worker.cidr}","${var.pod_cidr_range}"]

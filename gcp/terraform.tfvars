@@ -17,6 +17,25 @@ vpc = {
   }
 }
 
+fw1 = {
+  "tcp" = {
+    protocol = "tcp"
+    ports    = ["22","24","27"]
+    ranges   = ["0.0.0.0/0"]
+  }
+  "upd" = {
+    protocol = "upd"
+    ports    = []
+    ranges   = []
+  }
+  "icmp" = {
+    protocol = "icmp"
+    ports    = []
+    ranges   = ["0.0.0.0/0"]
+  }
+}
+
+
 vm = {
   "controller" = {
     name    = "controller"

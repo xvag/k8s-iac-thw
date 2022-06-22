@@ -10,6 +10,12 @@ variable "vpc_subnet" {
     description = "VPC Subnet"
 }
 
-variable "src_ranges" {
-    description = "IP Source Ranges"
+variable "rule" {
+    description = "Firewall Rules"
+
+    type        = map(object({
+      protocol  = string
+      ports     = list(string)
+      ranges    = list(string)
+    }))
 }
