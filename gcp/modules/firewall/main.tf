@@ -2,14 +2,14 @@ resource "google_compute_firewall" "firewall" {
   name     = var.fw_name
   network  = var.vpc_name
 
-  dynamic "rule" {
+  dynamic "origin" {
     for_each = var.rule
     content {
       allow {
-        protocol = var.rule.protocol
-        ports    = var.rule.ports
+        protocol = origin.value.protocol
+        ports    = origin.value.ports
       }
-      source_ranges = var.rule.ranges
+      source_ranges = origin.value.ranges
     }
   }
 
