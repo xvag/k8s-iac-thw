@@ -66,6 +66,12 @@ variable "fw_ex_w" {
     }))
 }
 
+variable "fw_ahc" {
+    type        = map(object({
+      ports     = list(string)
+    }))
+}
+
 variable "pod_cidr" {
   type = list(string)
 }

@@ -47,6 +47,12 @@ fw_ex_w = {
   }
 }
 
+fw_ahc = {
+  "tcp" = {
+    ports    = []
+  }
+}
+
 vm = {
   "controller" = {
     name    = "controller"
