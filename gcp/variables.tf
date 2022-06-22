@@ -27,17 +27,23 @@ variable "ssh_key" {
 }
 
 variable "vpc" {
+  type       = map(object({
+    name     = string
+    region   = string
+    cidr     = string
+    fw_ports = list(string)
+  }))
+}
+
+variable "vm" {
   type      = map(object({
-    no      = number
     name    = string
-    region  = string
     zone    = string
     machine = string
     image   = string
     size    = string
-    subnet  = string
     ip      = list(string)
-    fw      = list(string)
+    tags    = list(string)
   }))
 }
 

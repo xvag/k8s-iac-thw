@@ -1,33 +1,5 @@
 # Worker Resources
 
-resource "google_compute_network" "worker-vpc" {
-  name = "worker-vpc"
-  auto_create_subnetworks = "false"
-}
-
-resource "google_compute_subnetwork" "worker-subnet" {
-  name          = "worker-subnet"
-  region        = var.vpc.worker.region
-  ip_cidr_range = var.vpc.worker.subnet
-  network       = google_compute_network.worker-vpc.id
-}
-
-resource "google_compute_firewall" "worker-fw" {
-  name     = "worker-fw"
-  network  = "worker-vpc"
-  allow {
-    protocol = "tcp"
-    ports    = var.vpc.worker.fw
-  }
-  allow {
-    protocol = "icmp"
-  }
-  source_ranges = ["0.0.0.0/0"]
-  depends_on = [
-    google_compute_subnetwork.worker-subnet
-  ]
-}
-
 resource "google_compute_instance" "worker" {
   count = var.vpc.worker.no
 

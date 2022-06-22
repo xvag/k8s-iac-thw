@@ -9,28 +9,37 @@
 
 vpc = {
   "controller" = {
-    no      = 3
+    name     = "controller"
+    region   = "europe-west4"
+    cidr     = "10.240.0.0/24"
+    fw_ports = ["22","6443"]
+  },
+  "worker" = {
+    name     = "worker"
+    region   = "us-central1"
+    cidr     = "10.250.0.0/24"
+    fw_ports = ["22"]
+  }
+}
+
+vm = {
+  "controller" = {
     name    = "controller"
-    region  = "europe-west4"
     zone    = "europe-west4-a"
     machine = "e2-standard-2"
     image   = "ubuntu-os-cloud/ubuntu-2004-lts"
     size    = "200"
-    subnet  = "10.240.0.0/24"
     ip      = ["10.240.0.10","10.240.0.11","10.240.0.12"]
-    fw      = ["22","6443"]
+    tags    = ["k8s", "controller"]
   },
   "worker" = {
-    no      = 3
     name    = "worker"
-    region  = "us-central1"
     zone    = "us-central1-c"
     machine = "e2-standard-2"
     image   = "ubuntu-os-cloud/ubuntu-2004-lts"
     size    = "200"
-    subnet  = "10.250.0.0/24"
     ip      = ["10.250.0.20","10.250.0.21","10.250.0.22"]
-    fw      = ["22"]
+    tags    = ["k8s", "worker"]
   }
 }
 
