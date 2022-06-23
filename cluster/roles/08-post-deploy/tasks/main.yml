@@ -1,2 +1,5 @@
 - name: Deploy CoreDNS
   import_tasks: coredns.yml
+
+- name: Update /etc/hosts files
+  import_tasks: updhosts.yml
