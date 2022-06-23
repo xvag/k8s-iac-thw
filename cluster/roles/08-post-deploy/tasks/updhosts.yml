@@ -1,5 +1,5 @@
 
-- name: Install the etcd server and the etcdctl command line utility
+- name: Update /etc/hosts file in Controllers
   shell: |
     cat <<EOF | tee -a /etc/hosts
     10.250.0.20 worker-0
