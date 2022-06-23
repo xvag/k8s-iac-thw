@@ -1,4 +1,4 @@
-# Kubernetes The Hard Way as Code
+# Kubernetes The Hard Way as Code (KTHWaC)
 
 Deploy [Kubernetes The Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way) as Code, with Terraform and Ansible.
 
