@@ -7,13 +7,11 @@ vpc = {
     name     = "controller"
     region   = "europe-west4"
     cidr     = "10.240.0.0/24"
-    fw_ports = ["22","6443"]
   },
   "worker" = {
     name     = "worker"
     region   = "us-central1"
     cidr     = "10.250.0.0/24"
-    fw_ports = ["22"]
   }
 }
 

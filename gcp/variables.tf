@@ -31,7 +31,6 @@ variable "vpc" {
     name     = string
     region   = string
     cidr     = string
-    fw_ports = list(string)
   }))
 }
 
