@@ -56,6 +56,7 @@ fw = {
 
 ###
 ### VMs
+### Tip: The amount of IPs declared will define the amount of instances to be created
 ###
 
 vm = {
